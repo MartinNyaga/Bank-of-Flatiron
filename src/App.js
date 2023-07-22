@@ -47,10 +47,26 @@ function App() {
    // Function to handle form input changes
    const newChange = (event) => {
     const { name, value } = event.target;
-    setNewTransaction((prevTransaction) => ({
-      ...prevTransaction,
+    setNewTransaction((updateTrans) => ({
+      ...updateTrans,
       [name]: value,
     }));
+  };
+
+  // Function to handle transaction deletion
+  const deleteTransaction = (id) => {
+    // Delete Request to the bank data API
+    fetch(`https://bank-data-szbr.onrender.com/transactions/${id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then(() => {
+        // Update the state to remove the deleted transaction
+        setTransactions((deleteTrans) =>
+          deleteTrans.filter((transaction) => transaction.id !== id)
+        );
+      })
+      .catch((error) => console.error('Error deleting transaction:', error));
   };
 
 
@@ -107,7 +123,7 @@ function App() {
               <td>{transaction.description}</td>
               <td>{transaction.amount}</td>
               <td>{transaction.date}</td>
-              <button>Delete</button>
+              <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
             </tr>
           ))}
         </tbody>
