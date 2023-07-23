@@ -12,6 +12,7 @@ function App() {
     amount: '',
     date: '',
   });
+  const [filteredList, setFilteredList] = new useState('');
 
   useEffect(() => {
     // Fetch data from the deployed bank data API using fetch 
@@ -70,6 +71,17 @@ function App() {
   };
 
 
+   // Function for the search box
+   const searchBox = (event) => {
+    setFilteredList(event.target.value);
+  };
+
+  // Filter transactions based on the search term
+  const filteredBox = transactions.filter((transaction) =>
+    transaction.description.toLowerCase().includes(filteredList.toLowerCase())
+  );
+
+  //The whole displayed DOM
   return (
     <div className="App-header">
        {/* Input form for adding transactions */}
@@ -102,8 +114,19 @@ function App() {
       <input type="submit"  />
       </form>
 
-      {/* Dom for fetched data from API */}
+      
       <h2>Transaction Data:</h2>
+
+      {/* This is the search bar */}
+      <label>Search for a Transaction</label>
+        <input
+          type="text"
+          value={filteredList}
+          onChange={searchBox}
+          placeholder="Use description to search"
+        />
+
+        {/* Dom for fetched data from API */}
       <table>
       <thead>
           <tr>
@@ -116,7 +139,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction) => (
+          {filteredBox.map((transaction) => (
             <tr key={transaction.id}>
               <td>{transaction.id}</td>
               <td>{transaction.category}</td>
@@ -135,18 +158,3 @@ function App() {
 
 export default App;
 
-
-{/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
