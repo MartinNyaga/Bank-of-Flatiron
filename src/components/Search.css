@@ -1,0 +1,20 @@
+
+
+label {
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+
+  input:hover {
+    border: 1px solid #4CAF50;
+    transition: border 0.3s ease-in-out;
+  }
+  

@@ -66,6 +66,7 @@ function App() {
 
     //The User displayed DOM
     <div className="App-header">
+      <h1>Bank of Flatiron</h1>
       <Form onAddTransaction={handleAddTransaction} />
       <h2>Transaction Data:</h2>
       <Search searchTerm={searchTerm} onSearchChange={handleSearchChange} />
