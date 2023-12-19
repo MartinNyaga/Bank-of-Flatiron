@@ -34,9 +34,13 @@ The following have been used on this project:
 
 ## Screenshots 
 
-- Homepage 
+- Transaction Form 
 
-  <img src="./public/screenshot.png" alt="screenshot" />
+  <img src="./public/getForm.png" alt="screenshot" />
+
+- Transaction Search Bar and Table 
+
+  <img src="./public/getTable.png" alt="screenshot" />
 
 ## Known Bugs
 
